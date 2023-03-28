@@ -4,8 +4,17 @@
 
 {% block content %}
 <h1>Log In</h1>
-<form method="post">
-  {{ form.as_p }} {% csrf_token %}
-  <p><input type="submit" value="Log In"></p>
-</form>
+{% if form.errors %}
+<p>
+  Your username and password didn't match.
+  Please try again.
+</p>
+{% endif %}
+<div action="{% url 'login' %}" class="login-form">
+  <form method="post">
+    {{ form.as_p }} {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+    <p><input type="submit" value="Log In"></p>
+  </form>
+</div>
 {% endblock content %}

@@ -11,6 +11,7 @@
 </p>
 {% endif %}
 <div action="{% url 'login' %}" class="login-form">
+  <p>If you don't have an account <a href="{% url 'signup' %}">sign up</a></p>
   <form method="post">
     {{ form.as_p }} {% csrf_token %}
     <input type="hidden" name="next" value="{{ next }}">

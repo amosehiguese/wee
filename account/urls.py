@@ -23,10 +23,4 @@ urlpatterns = [
     # Sign Up url
     path('signup/', views.register, name='signup')
 
-
-
-    
-
-
-
 ]

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 from account.models import user
 
@@ -10,6 +11,11 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images/%Y/%m/%d')
     description = models.TextField(blank=True)
     created = models.DateField(auto_now_add=True, db_index=True)
+
+    def save(self, *args, **kwargs):
+      if not self.slug:
+          self.slug = slugify(self.title)
+      super().save(*args, **kwargs)
 
     def __str__(self):
       return self.title
